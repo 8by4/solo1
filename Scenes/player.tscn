@@ -1,3 +1,34 @@
-[gd_scene format=3 uid="uid://chj8t15xvd7ix"]
+[gd_scene load_steps=5 format=3 uid="uid://chj8t15xvd7ix"]
+
+[ext_resource type="Texture2D" uid="uid://c6ilupnibyua1" path="res://icon.svg" id="1_b4ckw"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_l1tnb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qargx"]
+size = Vector2(16, 16)
+
+[sub_resource type="GDScript" id="GDScript_7ixuh"]
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_l1tnb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_b4ckw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qargx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WallJumper" type="Node2D" parent="."]
+
+[node name="RayCastLeft" type="RayCast2D" parent="WallJumper"]
+target_position = Vector2(-13, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="WallJumper"]
+target_position = Vector2(13, 0)
+
+[node name="Timer" type="Timer" parent="WallJumper"]
+script = SubResource("GDScript_7ixuh")
+
+[connection signal="timeout" from="WallJumper/Timer" to="." method="walljumpTimeout"]
