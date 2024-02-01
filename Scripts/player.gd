@@ -47,10 +47,10 @@ func _process(delta):
 		elif Input.is_action_pressed("right"):
 			motion.x += SPEED
 			
-		motion.x = lerp(motion.x, 0.0, 0.3)
+		motion.x = lerpf(motion.x, 0.0, 0.3)
 	
 	motion.y += GRAVITY
 	
 	if MAX_DOWN_VEL < motion.y:
 		motion.y = MAX_DOWN_VEL
-	motion = move_and_slide()
+	move_and_slide()

@@ -9,11 +9,17 @@ size = Vector2(127, 129)
 [node name="test" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(231, 243)
 texture = ExtResource("1_h57xp")
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_8p5l4")
+metadata/_edit_group_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_irjva")]
-position = Vector2(-14, -88)
+position = Vector2(210, 90)

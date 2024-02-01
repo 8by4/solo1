@@ -14,6 +14,15 @@ config/name="Solo 1"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=500
+window/size/viewport_height=500
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GPTIntegration/plugin.cfg")
+
 [input]
 
 up={
