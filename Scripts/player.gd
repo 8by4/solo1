@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 
 # Constants
-const SPEED = 120
-const JUMP_POWER = 300
-const GRAVITY = 10
+const SPEED = 50
+const JUMP_POWER = 225
+const GRAVITY = 11.5
 const MAX_DOWN_VEL = 500
-const WALL_JUMP_POWER = 500
+const WALL_JUMP_POWER = 200
 const WALLJUMP_TIME = 0.2
 
 # Movement Variables

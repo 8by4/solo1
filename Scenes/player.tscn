@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cb7sdinynqvbo" path="res://Sprites/playerTest.png" id="2_xgk17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qargx"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
 
 [sub_resource type="GDScript" id="GDScript_7ixuh"]
 
@@ -12,21 +12,21 @@ size = Vector2(16, 16)
 script = ExtResource("1_l1tnb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
 texture = ExtResource("2_xgk17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qargx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="WallJumper" type="Node2D" parent="."]
 
 [node name="RayCastLeft" type="RayCast2D" parent="WallJumper"]
-target_position = Vector2(-13, 0)
+target_position = Vector2(-8, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="WallJumper"]
-target_position = Vector2(13, 0)
+target_position = Vector2(8, 0)
 
 [node name="Timer" type="Timer" parent="WallJumper"]
 script = SubResource("GDScript_7ixuh")
