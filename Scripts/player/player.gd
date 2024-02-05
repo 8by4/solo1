@@ -12,6 +12,7 @@ const WALLJUMP_TIME = 0.2
 # Variables
 var justWallJumped = false
 var movement_input : float
+var releaseJumpVelocity = 60
 
 #States
 @onready var stateManager = $StateManager
@@ -19,6 +20,7 @@ var movement_input : float
 @onready var idleState = $StateManager/Idle
 @onready var jumpState = $StateManager/Jump
 @onready var wallJumpState = $StateManager/WallJump
+@onready var squatState = $StateManager/Squat
 
 @onready var animator = $AnimationPlayer
 
@@ -34,11 +36,14 @@ func _ready():
 func walljumpTimeout():
 	justWallJumped = false
 
+
+
 func _physics_process(delta):
 	#calling SM physics update
 	stateManager.physics_update(delta)
 	
 	move_and_slide()
+	
 
 func handle_input() -> void:
 	movement_input = Input.get_action_strength("right") - Input.get_action_strength("left")

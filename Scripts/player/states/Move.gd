@@ -20,6 +20,9 @@ func physics_update(delta):
 	if Input.is_action_just_pressed("jump"):
 		return entity.jumpState
 		
+	if entity.is_on_floor() and entity.movement_input == 0 and Input.is_action_just_pressed("down"):
+		return entity.squatState
+
 
 func exit():
 	super.exit()

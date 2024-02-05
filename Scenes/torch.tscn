@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://csnmm7j1ccbye"]
+
+[ext_resource type="Texture2D" uid="uid://bu1mgn26dbenk" path="res://Sprites/torch.png" id="1_bwm4r"]
+[ext_resource type="Script" path="res://Scripts/torch.gd" id="1_rttkp"]
+[ext_resource type="Texture2D" uid="uid://bmjppkso3natm" path="res://Sprites/lightning/lightingAnim/light01.png" id="2_fbqnr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw644"]
+size = Vector2(14, 14)
+
+[node name="Torch" type="Node2D"]
+z_index = -1
+script = ExtResource("1_rttkp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bwm4r")
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_qw644")
+
+[node name="Lighting" type="PointLight2D" parent="."]
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("2_fbqnr")
+texture_scale = 0.01
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

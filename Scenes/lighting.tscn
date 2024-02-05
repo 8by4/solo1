@@ -1,0 +1,60 @@
+[gd_scene load_steps=13 format=3 uid="uid://cryu4qqxbg8qf"]
+
+[ext_resource type="Texture2D" uid="uid://bmjppkso3natm" path="res://Sprites/lightning/lightingAnim/light01.png" id="1_a7soc"]
+[ext_resource type="Texture2D" uid="uid://c4wdv3g0scf5q" path="res://Sprites/lightning/lightingAnim/light02.png" id="2_a30cd"]
+[ext_resource type="Script" path="res://Scripts/Lighting.gd" id="2_r8ef8"]
+[ext_resource type="Texture2D" uid="uid://jv06igtd1j6k" path="res://Sprites/lightning/lightingAnim/light03.png" id="3_gtn1c"]
+[ext_resource type="Texture2D" uid="uid://cyetc2g4w4vqa" path="res://Sprites/lightning/lightingAnim/light04.png" id="4_18o5j"]
+[ext_resource type="Texture2D" uid="uid://ukmprxcxqgsi" path="res://Sprites/lightning/lightingAnim/light05.png" id="5_slirp"]
+[ext_resource type="Texture2D" uid="uid://qtaiil1vcjgx" path="res://Sprites/lightning/lightingAnim/light06.png" id="6_jcmk1"]
+[ext_resource type="Texture2D" uid="uid://dkht54ede8cxn" path="res://Sprites/lightning/lightingAnim/light07.png" id="7_0oa2q"]
+[ext_resource type="Texture2D" uid="uid://6u10phk7xveg" path="res://Sprites/lightning/lightingAnim/light08.png" id="8_xam8k"]
+
+[sub_resource type="Animation" id="Animation_4c520"]
+resource_name = "Lighting"
+length = 1.2
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_a7soc"), ExtResource("2_a30cd"), ExtResource("3_gtn1c"), ExtResource("4_18o5j"), ExtResource("5_slirp"), ExtResource("6_jcmk1"), ExtResource("7_0oa2q"), ExtResource("8_xam8k")]
+}
+
+[sub_resource type="Animation" id="Animation_po7lu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_a7soc")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3io4f"]
+_data = {
+"Lighting": SubResource("Animation_4c520"),
+"RESET": SubResource("Animation_po7lu")
+}
+
+[node name="Lighting" type="PointLight2D"]
+blend_mode = 2
+texture = ExtResource("1_a7soc")
+script = ExtResource("2_r8ef8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3io4f")
+}

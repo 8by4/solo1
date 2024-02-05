@@ -1,50 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://chj8t15xvd7ix"]
+[gd_scene load_steps=20 format=3 uid="uid://chj8t15xvd7ix"]
 
 [ext_resource type="Script" path="res://Scripts/player/player.gd" id="1_p11l0"]
-[ext_resource type="Texture2D" uid="uid://b8h3m1wk8x368" path="res://Sprites/playerSheet.png" id="2_fu3kb"]
+[ext_resource type="Texture2D" uid="uid://b8h3m1wk8x368" path="res://Sprites/tiles/playerSheet.png" id="2_5eqqr"]
 [ext_resource type="Script" path="res://Scripts/state_manager.gd" id="3_yap4x"]
 [ext_resource type="Script" path="res://Scripts/player/states/Move.gd" id="4_7ta6v"]
 [ext_resource type="Script" path="res://Scripts/player/states/Idle.gd" id="4_dfwqx"]
 [ext_resource type="Script" path="res://Scripts/player/states/Jump.gd" id="6_nkk8r"]
 [ext_resource type="Script" path="res://Scripts/player/states/WallJump.gd" id="7_eacyt"]
+[ext_resource type="Texture2D" uid="uid://bmjppkso3natm" path="res://Sprites/lightning/lightingAnim/light01.png" id="8_x80bc"]
+[ext_resource type="Script" path="res://Scripts/player/states/Squat.gd" id="9_mcf8u"]
+[ext_resource type="PackedScene" uid="uid://cryu4qqxbg8qf" path="res://Scenes/lighting.tscn" id="16_mtn7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qargx"]
 size = Vector2(8, 8)
 
 [sub_resource type="GDScript" id="GDScript_7ixuh"]
-
-[sub_resource type="Animation" id="Animation_4aqjp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-
-[sub_resource type="Animation" id="Animation_okl3n"]
-resource_name = "Move"
-length = 0.8
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
 
 [sub_resource type="Animation" id="Animation_x0dsq"]
 resource_name = "Idle"
@@ -96,20 +66,83 @@ tracks/0/keys = {
 "values": [14, 15]
 }
 
+[sub_resource type="Animation" id="Animation_okl3n"]
+resource_name = "Move"
+length = 0.8
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_4aqjp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_x80bc")]
+}
+
+[sub_resource type="Animation" id="Animation_cffbf"]
+resource_name = "Squat"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_umobi"]
 _data = {
 "Idle": SubResource("Animation_x0dsq"),
 "Jump": SubResource("Animation_xufbj"),
 "Land": SubResource("Animation_whhom"),
 "Move": SubResource("Animation_okl3n"),
-"RESET": SubResource("Animation_4aqjp")
+"RESET": SubResource("Animation_4aqjp"),
+"Squat": SubResource("Animation_cffbf")
 }
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_p11l0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_fu3kb")
+texture = ExtResource("2_5eqqr")
 hframes = 4
 vframes = 4
 frame = 12
@@ -119,6 +152,10 @@ shape = SubResource("RectangleShape2D_qargx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
+limit_left = 0
+limit_top = -40
+limit_right = 512
+limit_bottom = 552
 
 [node name="WallJumper" type="Node2D" parent="."]
 
@@ -152,6 +189,11 @@ script = ExtResource("6_nkk8r")
 
 [node name="WallJump" type="Node" parent="StateManager"]
 script = ExtResource("7_eacyt")
+
+[node name="Squat" type="Node" parent="StateManager"]
+script = ExtResource("9_mcf8u")
+
+[node name="Lighting" parent="." instance=ExtResource("16_mtn7g")]
 
 [connection signal="timeout" from="WallJumper/Timer" to="." method="walljumpTimeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Idle" method="_on_animation_player_animation_finished"]
