@@ -176,7 +176,6 @@ libraries = {
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("3_yap4x")
 starting_state = NodePath("Idle")
-print_states = true
 
 [node name="Idle" type="Node" parent="StateManager"]
 script = ExtResource("4_dfwqx")
@@ -194,6 +193,7 @@ script = ExtResource("7_eacyt")
 script = ExtResource("9_mcf8u")
 
 [node name="Lighting" parent="." instance=ExtResource("16_mtn7g")]
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="WallJumper/Timer" to="." method="walljumpTimeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Idle" method="_on_animation_player_animation_finished"]

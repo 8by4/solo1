@@ -1,17 +1,14 @@
 extends Node2D
+var active
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_area_2d_area_entered(area):
-	print("meow")
-	if Input.is_action_just_pressed("interact"):
-		self.frame = 1
+func _input(event):
+	# torch activation
+	if active == true:
+		if Input.is_action_just_pressed("interaction"):
+			$Sprite2D.frame = 1
+			$Lighting.texture_scale = 3
+			$Smoke.visible = true
+func _on_interaction_area_body_entered(body):
+	if body.name == 'Player':
+		active = true

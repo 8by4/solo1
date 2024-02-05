@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://csnmm7j1ccbye"]
+[gd_scene load_steps=7 format=3 uid="uid://csnmm7j1ccbye"]
 
 [ext_resource type="Texture2D" uid="uid://bu1mgn26dbenk" path="res://Sprites/torch.png" id="1_bwm4r"]
 [ext_resource type="Script" path="res://Scripts/torch.gd" id="1_rttkp"]
 [ext_resource type="Texture2D" uid="uid://bmjppkso3natm" path="res://Sprites/lightning/lightingAnim/light01.png" id="2_fbqnr"]
+[ext_resource type="Texture2D" uid="uid://d3ev7fv0vbuu5" path="res://Sprites/smoke.png" id="4_7ce54"]
+[ext_resource type="Script" path="res://Scripts/Smoke.gd" id="5_clt8e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw644"]
-size = Vector2(14, 14)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vn03j"]
+radius = 11.0
 
 [node name="Torch" type="Node2D"]
 z_index = -1
@@ -15,10 +17,11 @@ script = ExtResource("1_rttkp")
 texture = ExtResource("1_bwm4r")
 hframes = 2
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="."]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_qw644")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_vn03j")
 
 [node name="Lighting" type="PointLight2D" parent="."]
 blend_mode = 2
@@ -26,4 +29,26 @@ shadow_enabled = true
 texture = ExtResource("2_fbqnr")
 texture_scale = 0.01
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="Smoke" type="CPUParticles2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(0, -2)
+amount = 12
+lifetime = 2.0
+speed_scale = 0.8
+explosiveness = 0.1
+randomness = 1.0
+lifetime_randomness = 0.25
+texture = ExtResource("4_7ce54")
+spread = 90.45
+gravity = Vector2(0, -10)
+angular_velocity_min = -421.82
+angular_velocity_max = 58.18
+tangential_accel_min = -2.0
+tangential_accel_max = 3.0
+damping_max = 3.03
+angle_min = -232.7
+angle_max = 87.3
+script = ExtResource("5_clt8e")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

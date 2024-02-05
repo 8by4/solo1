@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 # Constants
 const SPEED = 90
@@ -36,15 +36,12 @@ func _ready():
 func walljumpTimeout():
 	justWallJumped = false
 
-
-
 func _physics_process(delta):
 	#calling SM physics update
 	stateManager.physics_update(delta)
 	
 	move_and_slide()
 	
-
 func handle_input() -> void:
 	movement_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
