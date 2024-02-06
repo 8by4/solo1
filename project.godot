@@ -25,6 +25,12 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray()
 
+[importer_defaults]
+
+animation_library={
+"animation/fps": 60.0
+}
+
 [input]
 
 jump={

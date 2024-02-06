@@ -10,7 +10,7 @@ func enter():
 	if entity.rayCastRightNode.is_colliding():
 		entity.velocity.x = -entity.WALL_JUMP_POWER
 		
-	entity.velocity.y = -entity.JUMP_POWER * 0.8
+	entity.velocity.y = -entity.JUMP_POWER * .85
 	
 func physics_update(delta):
 	super.physics_update(delta)
