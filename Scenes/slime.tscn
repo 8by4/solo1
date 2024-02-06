@@ -10,7 +10,7 @@
 size = Vector2(8, 5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ti7p4"]
-radius = 28.0
+radius = 51.0098
 
 [sub_resource type="Animation" id="Animation_8kp3e"]
 resource_name = "Idle"
@@ -81,6 +81,7 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_sp152")
 
 [node name="Player Dectection" type="Area2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 

@@ -27,4 +27,4 @@ script = ExtResource("3_jfd1s")
 position = Vector2(210, 494)
 
 [node name="Slime" parent="." instance=ExtResource("6_i3ygf")]
-position = Vector2(274, 501)
+position = Vector2(394, 500)
