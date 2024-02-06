@@ -7,7 +7,7 @@ func _input(event):
 	if active == true:
 		if lit == true:
 			if Input.is_action_just_pressed("interaction"):
-				$AnimationPlayer.play("extinguish")
+				$AnimationPlayer.play("extinguished")
 				$AnimationPlayer.stop()
 			
 				$Lighting.visible = false
